@@ -3,4 +3,6 @@
 # Get the aliases and functions
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
 
-startx
+. "$HOME/.cargo/env"
+
+pfetch
