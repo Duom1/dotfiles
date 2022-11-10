@@ -24,6 +24,8 @@ alias lv="lvim"
 alias code="code-oss"
 alias sx="startx"
 alias sxf="startxfce4"
+alias net="sudo nmtui"
+alias btop="bashtop"
 
 . "$HOME/.cargo/env"
 
