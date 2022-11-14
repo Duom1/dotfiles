@@ -26,6 +26,4 @@ alias sxf="startxfce4"
 alias net="sudo nmtui"
 alias btop="bashtop"
 
-. "$HOME/.cargo/env"
-
 export FZF_DEFAULT_COMMAND="find -L"
