@@ -1,5 +1,5 @@
 setxkbmap fi &
-picom &
-nitrogen --restore &
+picom &                 /* OPT_DW_PN */
+nitrogen --restore &    /* OPT_DW_PN */
 slstatus &
 exec dwm
