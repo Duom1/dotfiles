@@ -1,5 +1,3 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
 vim.cmd([[packadd packer.nvim]])
 require("packer").startup(function()
   use("wbthomason/packer.nvim")
@@ -24,6 +22,9 @@ require("packer").startup(function()
     },
   })
 end)
+
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.list = true
 vim.opt.listchars:append("tab:> ")
 vim.opt.shiftwidth = 4
