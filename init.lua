@@ -7,7 +7,10 @@ require("packer").startup(function()
   use("junegunn/fzf")
   use("junegunn/fzf.vim")
   use("numToStr/Comment.nvim")
+  use("windwp/nvim-autopairs")
+  use{'neoclide/coc.nvim', branch = 'release'}
   vim.cmd([[colorscheme gruvbox]])
+  require("nvim-autopairs").setup()
   require("Comment").setup()
   require("lualine").setup({
     options = {
