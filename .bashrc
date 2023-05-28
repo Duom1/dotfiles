@@ -81,8 +81,7 @@ _open_files_for_editing() {
 ## Uncomment an alias if you want to use it.
 ##
 
-PS1='\u@\h \w $(git rev-parse --abbrev-ref HEAD 2>/dev/null)\n> '
-export PATH="/home/user/code/py_texteditor:$PATH"
+PS1='\[\033[38;5;222m\]\u\[\033[38;5;220m\]@\[\033[38;5;75m\]\h \[\033[38;5;45m\]$(if [[ $PWD = $HOME ]]; then echo ""; else echo "\w"; fi) \[\033[38;5;226m\]$(git rev-parse --abbrev-ref HEAD 2>/dev/null)\n\[\033[38;5;220m\]> \[\033[0m\]'
 alias vim="nvim"
 alias ls="lsd"
 alias temp="watch sensors"
