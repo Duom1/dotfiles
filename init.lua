@@ -1,13 +1,9 @@
 -- Packer bootstrap
 require('packer').startup(function()
     use {
-       "nvim-neo-tree/neo-tree.nvim",
-       branch = "v2.x",
-       requires = {
-           "nvim-lua/plenary.nvim",
-           "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-	   "MunifTanjim/nui.nvim",
-       }
+  	'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	  -- or                          , branch = '0.1.x',
+  	requires = { {'nvim-lua/plenary.nvim'} }
     }
     use 'windwp/nvim-autopairs'
     use 'tpope/vim-commentary'
@@ -20,11 +16,10 @@ require('packer').startup(function()
        'nvim-lualine/lualine.nvim',
        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
-    -- barbar
     use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
     use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
     use 'romgrk/barbar.nvim'
-    -- language servers
+    use 'hrsh7th/vim-vsnip'
     use {
   	'hrsh7th/nvim-cmp',
   	requires = {
@@ -40,8 +35,29 @@ require('packer').startup(function()
     }
     -- terminal
     use "akinsho/toggleterm.nvim"
-    use 'nyoom-engineering/oxocarbon.nvim'
+    -- Tree options
+    use {
+       "nvim-neo-tree/neo-tree.nvim",
+       branch = "v2.x",
+       requires = {
+           "nvim-lua/plenary.nvim",
+           "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+	         "MunifTanjim/nui.nvim",
+       }
+    }
 end)
+
+-- Tabs and spaces
+vim.opt.expandtab = true       -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2         -- Set the number of spaces for each indentation level
+vim.opt.tabstop = 2            -- Set the number of spaces to use for <Tab> key
+
+-- Telescope usage
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<space>ff', builtin.find_files, {})
+vim.keymap.set('n', '<space>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<space>fb', builtin.buffers, {})
+vim.keymap.set('n', '<space>fh', builtin.help_tags, {})
 
 -- Toggleterm configuration
 require('toggleterm').setup {
@@ -57,15 +73,9 @@ require('toggleterm').setup {
 local cmp = require('cmp')
 cmp.setup {
   mapping = {
-	['<CR>'] = function(fallback)
-        	if cmp.visible() then
-          		cmp.confirm()
-        	else
-          		fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
-        	end
-        end,
-	['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-	['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+	  ['<CR>'] = cmp.mapping.confirm({ select = true }),
+	  ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+	  ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -105,7 +115,7 @@ require('nvim-autopairs').setup({
 
 -- Barbar keybinds
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', 'Tab>', '<Cmd>BufferNext<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Tab>', '<Cmd>BufferNext<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { silent = true })
@@ -117,7 +127,7 @@ vim.api.nvim_set_keymap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { silent = true }
 vim.api.nvim_set_keymap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>x', '<Cmd>BufferClose<CR>', { silent = true })
--- vim.api.nvim_set_keymap('n', '', '<Cmd>BufferRestore<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<A-C>', '<Cmd>BufferRestore<CR>', { silent = true })
 
 -- Color theme
 vim.opt.background = "dark" -- set this to dark or light
@@ -127,7 +137,8 @@ vim.cmd("colorscheme gruvbox")
 vim.api.nvim_set_keymap('n', '<C-q>', ':qa<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { silent = true })
 
--- Relative line munber
+-- Line numbers and stuff
+vim.opt.fillchars = { eob = " " }
 vim.wo.scrolloff = 5
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -137,10 +148,18 @@ vim.api.nvim_set_keymap('n', '<Space>/', ':Commentary<CR>', { silent = true })
 vim.api.nvim_set_keymap('v', '<Space>/', ':Commentary<CR>', { silent = true })
 
 -- Ctrl + movement keys
-vim.api.nvim_set_keymap('v', '<C-j>', '<Down>', { noremap = true })
-vim.api.nvim_set_keymap('v', '<C-k>', '<Up>', { noremap = true })
-vim.api.nvim_set_keymap('v', '<C-l>', '<Right>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { silent = true })
+vim.api.nvim_set_keymap('i', '<C-j>', '<Down>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-k>', '<Up>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-l>', '<Right>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-h>', '<Left>', { silent = true })
 
--- Neotree open
-vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree<CR>', { silent = true })
+-- Neotree
+require('neo-tree').setup {
+  filesystem = {
+    filtered_items = {
+      visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
+      hide_dotfiles = false,
+    },
+  }
+}
+vim.api.nvim_set_keymap('n', '<Space>e', ':NeoTreeFloat<CR>', { silent = true })
