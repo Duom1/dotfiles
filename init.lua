@@ -114,6 +114,11 @@ require('nvim-autopairs').setup({
 })
 
 -- Barbar keybinds
+require'barbar'.setup {
+  icons = {
+    button = "x"
+  }
+}
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Tab>', '<Cmd>BufferNext<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { silent = true })
