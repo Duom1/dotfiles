@@ -8,6 +8,8 @@ require('packer').startup(function()
     use 'windwp/nvim-autopairs'
     use 'tpope/vim-commentary'
     use 'nyoom-engineering/oxocarbon.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use "ellisonleao/gruvbox.nvim"
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -73,7 +75,7 @@ require('toggleterm').setup {
 local cmp = require('cmp')
 cmp.setup {
   mapping = {
-	  ['<CR>'] = cmp.mapping.confirm({ select = true }),
+	  -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
 	  ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 	  ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
   },
@@ -167,4 +169,7 @@ require('neo-tree').setup {
     },
   }
 }
-vim.api.nvim_set_keymap('n', '<Space>e', ':NeoTreeFloat<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree<CR>', { silent = true })
+
+-- Clang-format commat: space f m
+vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
