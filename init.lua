@@ -48,6 +48,11 @@ require('packer').startup(function()
 	         "MunifTanjim/nui.nvim",
        }
     }
+    -- markdown-preview
+    use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+    })
 end)
 
 -- Tabs and spaces
@@ -89,6 +94,7 @@ cmp.setup {
 local lspconfig = require('lspconfig')
 lspconfig.clangd.setup{}
 lspconfig.pyright.setup{}
+lspconfig.cmake.setup{}
 -- lspconfig.sumneko_lua.setup{}
 
 -- Mason setup
@@ -174,3 +180,4 @@ vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree<CR>', { silent = true })
 
 -- Clang-format commat: space f m
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
+vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
