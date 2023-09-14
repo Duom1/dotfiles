@@ -8,9 +8,11 @@ require('packer').startup(function()
     }
     use 'windwp/nvim-autopairs'
     use 'tpope/vim-commentary'
+    -- themes:
     use 'nyoom-engineering/oxocarbon.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
     use "ellisonleao/gruvbox.nvim"
+    use "joshdick/onedark.vim"
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -145,7 +147,7 @@ vim.api.nvim_set_keymap('n', '<A-C>', '<Cmd>BufferRestore<CR>', { silent = true 
 
 -- Color theme
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme onedark")
 
 -- Mappping saving and exiting
 vim.api.nvim_set_keymap('n', '<C-q>', ':qa<CR>', { noremap = true, silent = true })
@@ -176,8 +178,10 @@ require('neo-tree').setup {
     },
   }
 }
-vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree<CR>', { silent = true })
+-- use ":Neotree float<CR>" to set the tree as floating in the middle
+-- ":Neotree left<CR>" is default
+vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree float<CR>', { silent = true })
 
--- Clang-format commat: space f m
+-- Clang-format command: space f m
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
