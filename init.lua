@@ -154,11 +154,31 @@ vim.opt.relativenumber = true
 vim.api.nvim_set_keymap('i', '<C-j>', '<Down>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-k>', '<Up>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-l>', '<Right>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-h>', '<Left>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { silent = true })
+vim.api.nvim_set_keymap('i', '<C-h>', '<Left>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true })
+
+-- buffers, tabs and splits
+vim.api.nvim_set_keymap('n', '<Space>s', ':split<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Space>v', ':vsplit<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Space>q', ':q', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Space>x', ':bdelete!', { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-t>", [[:tabnew<CR>]], { noremap =  true })
+vim.api.nvim_set_keymap("n", "<C-w>", [[:tabclose<CR>]], { noremap =  true })
+vim.api.nvim_set_keymap("n", "<A-l>", [[:tabnext<CR>]], { noremap =  true })
+vim.api.nvim_set_keymap("n", "<A-h>", [[:tabprevious<CR>]], { noremap =  true })
+
+-- terminal
+vim.cmd[[
+  augroup TerminalMode
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+  augroup END
+]]
+vim.api.nvim_set_keymap('n', '<Space>t', [[:term<CR>]], { noremap = true })
+vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 
 -- Clang-format command: space f m
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
