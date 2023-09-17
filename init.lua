@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   "lukas-reineke/indent-blankline.nvim",
+  "gcmt/taboo.vim",
   "tpope/vim-commentary",
   {
     "nvim-telescope/telescope.nvim", tag = "0.1.3",
@@ -110,7 +111,12 @@ lspconfig.cmake.setup{}
 require("mason").setup()
 
 -- Lua line configurations
-require('lualine').setup()
+require('lualine').setup{
+  options = {
+    component_separators = { left = '|', right = '|'},
+    section_separators = { left = '', right = ''},
+  }
+}
 
 -- Commenting
 vim.api.nvim_set_keymap('n', '<Space>/', ':Commentary<CR>', { silent = true })
@@ -163,8 +169,8 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true })
 -- buffers, tabs and splits
 vim.api.nvim_set_keymap('n', '<Space>s', ':split<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Space>v', ':vsplit<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Space>q', ':q', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Space>x', ':bdelete!', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Space>q', ':q<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Space>x', ':bdelete!<CR>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-t>", [[:tabnew<CR>]], { noremap =  true })
 vim.api.nvim_set_keymap("n", "<C-w>", [[:tabclose<CR>]], { noremap =  true })
 vim.api.nvim_set_keymap("n", "<A-l>", [[:tabnext<CR>]], { noremap =  true })
@@ -177,7 +183,11 @@ vim.cmd[[
     autocmd TermOpen * setlocal nonumber norelativenumber
   augroup END
 ]]
-vim.api.nvim_set_keymap('n', '<Space>t', [[:term<CR>]], { noremap = true })
+function open_terminal()
+  vim.cmd('tabnew')  -- Open a new tab
+  vim.cmd('term')    -- Open a terminal in the new tab
+end
+vim.api.nvim_set_keymap('n', '<Space>t', [[:lua open_terminal()<CR>]], { noremap = true })
 vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 
 -- Clang-format command: space f m
