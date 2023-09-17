@@ -1,153 +1,144 @@
--- Packer bootstrap
-require('packer').startup(function()
-    use "lukas-reineke/indent-blankline.nvim"
-    use {
-  	'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  -- or                          , branch = '0.1.x',
-  	requires = { {'nvim-lua/plenary.nvim'} }
-    }
-    use 'windwp/nvim-autopairs'
-    use 'tpope/vim-commentary'
-    -- themes:
-    use 'nyoom-engineering/oxocarbon.nvim'
-    use { "catppuccin/nvim", as = "catppuccin" }
-    use "ellisonleao/gruvbox.nvim"
-    use "joshdick/onedark.vim"
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-    }
-    use {
-       'nvim-lualine/lualine.nvim',
-       requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
-    use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
-    use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
-    use 'romgrk/barbar.nvim'
-    use 'hrsh7th/vim-vsnip'
-    use {
-  	'hrsh7th/nvim-cmp',
-  	requires = {
-    		'hrsh7th/cmp-nvim-lsp',
-    		'hrsh7th/cmp-buffer',
-    		'hrsh7th/cmp-path',
-  	},
-    }
-    use 'neovim/nvim-lspconfig'
-    use {
-       "williamboman/mason.nvim",
-       run = ":MasonUpdate" -- :MasonUpdate updates registry contents
-    }
-    -- terminal
-    use "akinsho/toggleterm.nvim"
-    -- Tree options
-    use {
-       "nvim-neo-tree/neo-tree.nvim",
-       branch = "v2.x",
-       requires = {
-           "nvim-lua/plenary.nvim",
-           "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-	         "MunifTanjim/nui.nvim",
-       }
-    }
-    -- markdown-preview
-    use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-    })
-end)
-
--- Tabs and spaces
-vim.opt.expandtab = true       -- Use spaces instead of tabs
-vim.opt.shiftwidth = 2         -- Set the number of spaces for each indentation level
-vim.opt.tabstop = 2            -- Set the number of spaces to use for <Tab> key
-
--- Telescope usage
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<space>ff', builtin.find_files, {})
-vim.keymap.set('n', '<space>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<space>fb', builtin.buffers, {})
-vim.keymap.set('n', '<space>fh', builtin.help_tags, {})
-
--- Toggleterm configuration
-require('toggleterm').setup {
-  open_mapping = [[<A-i>]], -- Keybinding to toggle the terminal
-  direction = 'float',
-  shell = vim.o.shell,
-  float_opts = {
-      border = 'single',
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+  "lukas-reineke/indent-blankline.nvim",
+  "tpope/vim-commentary",
+  {
+    "nvim-telescope/telescope.nvim", tag = "0.1.3",
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  }, 
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+          sync_install = false,
+          ensure_installed = {
+            "bash",
+            "c",
+            "cpp",
+            "html",
+            "javascript",
+            "json",
+            "lua",
+            "markdown",
+            "markdown_inline",
+            "python",
+            "query",
+            "regex",
+            "tsx",
+            "typescript",
+            "vim",
+            "vimdoc",
+            "yaml"
+          },
+          highlight = { enable = true },
+          indent = { enable = true },  
+      })
+    end
   },
-}
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
+  },
+  "L3MON4D3/LuaSnip",
+  "saadparwaiz1/cmp_luasnip",
+  "rafamadriz/friendly-snippets",
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path'
+    }
+  },
+  'neovim/nvim-lspconfig',
+  "williamboman/mason.nvim",
+  {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  },
+  -- Themes
+  "ellisonleao/gruvbox.nvim",
+  "joshdick/onedark.vim",
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+})
 
 -- Lsp config
 local cmp = require('cmp')
+require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup {
   mapping = {
-	  -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
+	  ['<CR>'] = cmp.mapping.confirm({ select = true }),
 	  ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 	  ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+  },
+  snippets = {
+    expnad = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
   },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'luasnip' }
   },
 }
 local lspconfig = require('lspconfig')
 lspconfig.clangd.setup{}
 lspconfig.pyright.setup{}
 lspconfig.cmake.setup{}
--- lspconfig.sumneko_lua.setup{}
 
 -- Mason setup
 require("mason").setup()
 
--- Tree sitter configuration
-require('nvim-treesitter.configs').setup {
-  ensure_installed = {
-	  "c",
-	  "lua",
-	  "python",
-  },
-  highlight = {
-	enable = true,
-  },
-}
-
 -- Lua line configurations
 require('lualine').setup()
 
--- Configure autopairs
-require('nvim-autopairs').setup({
-    disable_filetype = { "TelescopePrompt" },
-    ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]],'%s+', ''),
-    enable_check_bracket_line = true,
-})
+-- Commenting
+vim.api.nvim_set_keymap('n', '<Space>/', ':Commentary<CR>', { silent = true })
+vim.api.nvim_set_keymap('v', '<Space>/', ':Commentary<CR>', { silent = true })
 
--- Barbar keybinds
-require'barbar'.setup {
-  icons = {
-    button = "x"
-  }
+-- Telescope usage
+require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = { "%.git" }
+  },
 }
-vim.api.nvim_set_keymap('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<Tab>', '<Cmd>BufferNext<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<Space>x', '<Cmd>BufferClose<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<A-C>', '<Cmd>BufferRestore<CR>', { silent = true })
+local builtin = require("telescope.builtin")
+vim.keymap.set('n', '<space>ff', [[:Telescope find_files hidden=true<CR>]], {})
+vim.keymap.set('n', '<space>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<space>fb', builtin.buffers, {})
+vim.keymap.set('n', '<space>fh', builtin.help_tags, {})
 
--- Color theme
-vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme onedark")
+-- Blankline
+require("indent_blankline").setup {
+  -- for example, context is off by default, use this to turn it on
+  show_current_context = true,
+  show_current_context_start = true,
+}
+
+-- Tabs and spaces
+vim.opt.expandtab = true       -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2         -- Set the number of spaces for each indentation level
+vim.opt.tabstop = 2            -- Set the number of spaces to use for <Tab> key
 
 -- Mappping saving and exiting
 vim.api.nvim_set_keymap('n', '<C-q>', ':qa<CR>', { noremap = true, silent = true })
@@ -159,29 +150,19 @@ vim.wo.scrolloff = 5
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Commenting
-vim.api.nvim_set_keymap('n', '<Space>/', ':Commentary<CR>', { silent = true })
-vim.api.nvim_set_keymap('v', '<Space>/', ':Commentary<CR>', { silent = true })
-
 -- Ctrl + movement keys
 vim.api.nvim_set_keymap('i', '<C-j>', '<Down>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-k>', '<Up>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-l>', '<Right>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-h>', '<Left>', { silent = true })
-
--- Neotree
-require('neo-tree').setup {
-  filesystem = {
-    filtered_items = {
-      visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
-      hide_dotfiles = false,
-    },
-  }
-}
--- use ":Neotree float<CR>" to set the tree as floating in the middle
--- ":Neotree left<CR>" is default
-vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree float<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { silent = true })
 
 -- Clang-format command: space f m
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
+
+-- Colorscheme
+vim.cmd.colorscheme("catppuccin")
