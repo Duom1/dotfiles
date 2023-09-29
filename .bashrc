@@ -3,9 +3,11 @@
 if [ "$TERM" = "linux" ]; then
   PS1='\u \W $ ';
   alias ls='ls --color'
+  alias ll='ls --color -l'
 else
   eval "$(starship init bash)";
   alias ls="lsd"
+  alias ll="lsd -l"
 fi
 alias vim="nvim"
 alias vim_conf="nvim ~/.config/nvim/init.lua"
