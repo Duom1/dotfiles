@@ -10,7 +10,6 @@ else
   alias ll="lsd -l"
 fi
 alias vim="nvim"
-alias vim_conf="nvim ~/.config/nvim/init.lua"
 alias temp="watch sensors"
 alias kssh="kitty +kitten ssh"
 alias ..="cd .."

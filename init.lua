@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  "Yggdroot/indentLine",
   "gcmt/taboo.vim",
   "tpope/vim-commentary",
   {
@@ -24,28 +24,28 @@ require("lazy").setup({
     config = function () 
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-          sync_install = false,
-          ensure_installed = {
-            "bash",
-            "c",
-            "cpp",
-            "html",
-            "javascript",
-            "json",
-            "lua",
-            "markdown",
-            "markdown_inline",
-            "python",
-            "query",
-            "regex",
-            "tsx",
-            "typescript",
-            "vim",
-            "vimdoc",
-            "yaml"
-          },
-          highlight = { enable = true },
-          indent = { enable = true },  
+        sync_install = false,
+        ensure_installed = {
+          "bash",
+          "c",
+          "cpp",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "python",
+          "query",
+          "regex",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml"
+        },
+        highlight = { enable = true },
+        indent = { enable = true },  
       })
     end
   },
@@ -125,22 +125,11 @@ vim.api.nvim_set_keymap('n', '<Space>/', ':Commentary<CR>', { silent = true })
 vim.api.nvim_set_keymap('v', '<Space>/', ':Commentary<CR>', { silent = true })
 
 -- Telescope usage
-require('telescope').setup{
-  defaults = {
-    file_ignore_patterns = { "%.git" }
-  },
-}
 local builtin = require("telescope.builtin")
-vim.keymap.set('n', '<space>ff', [[:Telescope find_files hidden=true<CR>]], {})
+vim.keymap.set('n', '<space>ff', ":Telescope find_files hidden=true<CR>", {})
 vim.keymap.set('n', '<space>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<space>fb', builtin.buffers, {})
 vim.keymap.set('n', '<space>fh', builtin.help_tags, {})
-
--- Blankline
-require("ibl").setup {
-  -- for example, context is off by default, use this to turn it on
-  scope = { enabled = true },
-}
 
 -- Tabs and spaces
 vim.opt.expandtab = true       -- Use spaces instead of tabs
@@ -197,3 +186,4 @@ vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true }
 
 -- Colorscheme
 vim.cmd.colorscheme("monokai")
+

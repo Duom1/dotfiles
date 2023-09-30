@@ -1,7 +1,10 @@
 link_dotfiles() {
-  ln ./.bashrc ~/.bashrc
-  ln ./init.lua ~/.config/nvim/init.lua
-  ln ./starship.toml ~/.config/starship.toml
+  rm ~/.config/starship.toml
+  rm ~/.config/nvim/init.lua
+  rm ~/.bashrc
+  cp ./.bashrc ~/.bashrc
+  cp ./init.lua ~/.config/nvim/init.lua
+  cp ./starship.toml ~/.config/starship.toml
 }
 install_starship() {
   curl -sS https://starship.rs/install.sh | sh
