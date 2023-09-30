@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-  "lukas-reineke/indent-blankline.nvim",
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   "gcmt/taboo.vim",
   "tpope/vim-commentary",
   {
@@ -78,6 +78,7 @@ require("lazy").setup({
   -- Themes
   "ellisonleao/gruvbox.nvim",
   "joshdick/onedark.vim",
+  { "tanvirtin/monokai.nvim", priority = 1000 },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 })
 
@@ -136,10 +137,9 @@ vim.keymap.set('n', '<space>fb', builtin.buffers, {})
 vim.keymap.set('n', '<space>fh', builtin.help_tags, {})
 
 -- Blankline
-require("indent_blankline").setup {
+require("ibl").setup {
   -- for example, context is off by default, use this to turn it on
-  show_current_context = true,
-  show_current_context_start = true,
+  scope = { enabled = true },
 }
 
 -- Tabs and spaces
@@ -196,4 +196,4 @@ vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = tr
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- Colorscheme
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("monokai")
