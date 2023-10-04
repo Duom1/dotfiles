@@ -162,7 +162,7 @@ vim.api.nvim_set_keymap('n', '<Space>v', ':vsplit<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Space>q', ':q<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Space>x', ':bdelete!<CR>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-t>", [[:tabnew<CR>]], { noremap =  true })
-vim.api.nvim_set_keymap("n", "<C-w>", [[:tabclose<CR>]], { noremap =  true })
+vim.api.nvim_set_keymap("n", "<A-w>", [[:tabclose<CR>]], { noremap =  true })
 vim.api.nvim_set_keymap("n", "<A-l>", [[:tabnext<CR>]], { noremap =  true })
 vim.api.nvim_set_keymap("n", "<A-h>", [[:tabprevious<CR>]], { noremap =  true })
 
