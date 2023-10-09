@@ -1,6 +1,6 @@
 # PS1='\[\033[38;5;222m\]\u\[\033[38;5;220m\]@\[\033[38;5;75m\]\h \[\033[38;5;45m\]$(if [[ $PWD = $HOME ]]; then echo ""; else echo "\w"; fi) \[\033[38;5;226m\]$(git rev-parse --abbrev-ref HEAD 2>/dev/null)\n\[\033[38;5;220m\]-> \[\033[0m\]'
 # PS1='\e[32m\W $ \e[39m'
-if [ "$TERM" = "linux" ]; then
+if [ "$TERM" = "linux" ] || [ "$TERM" = "screen" ]; then
   PS1='\u \W $ ';
   alias ls='ls --color';
   alias ll='ls --color -l'
