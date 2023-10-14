@@ -9,6 +9,7 @@ else
   alias ls="lsd";
   alias ll="lsd -l"
 fi
+set -o vi
 alias vim="nvim"
 alias temp="watch sensors"
 alias kssh="kitty +kitten ssh"
