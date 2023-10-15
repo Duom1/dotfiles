@@ -185,5 +185,5 @@ vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = tr
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- Colorscheme
-vim.cmd.colorscheme("monokai")
+vim.cmd.colorscheme("gruvbox")
 
