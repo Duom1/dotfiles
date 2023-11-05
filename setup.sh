@@ -1,10 +1,12 @@
 link_dotfiles() {
-  rm ~/.config/starship.toml
-  rm ~/.config/nvim/init.lua
-  rm ~/.bashrc
   cp ./.bashrc ~/.bashrc
-  cp ./init.lua ~/.config/nvim/init.lua
+  cp ./.xinitrc ~/.xinitrc
   cp ./starship.toml ~/.config/starship.toml
+  cp ./redshift.conf ~/.config/redshift.conf
+  if [ -d "~/.config/nvim/" ]; then
+    echo "~/.config/nvim/ exists"
+    cp ./init.lua ~/.config/nvim/init.lua
+  fi
 }
 install_starship() {
   curl -sS https://starship.rs/install.sh | sh
