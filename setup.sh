@@ -3,9 +3,11 @@ link_dotfiles() {
   cp ./.xinitrc ~/.xinitrc
   cp ./starship.toml ~/.config/starship.toml
   cp ./redshift.conf ~/.config/redshift.conf
-  if [ -d "~/.config/nvim/" ]; then
+  if [ -d ~/.config/nvim/ ]; then
     echo "~/.config/nvim/ exists"
     cp ./init.lua ~/.config/nvim/init.lua
+  else
+    echo "~/.config/nvim does not exist"
   fi
 }
 install_starship() {
