@@ -26,6 +26,7 @@ require("lazy").setup({
       configs.setup({
         sync_install = false,
         ensure_installed = {
+          "robot",
           "bash",
           "c",
           "cpp",
