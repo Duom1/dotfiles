@@ -2,13 +2,11 @@
 # PS1='\e[32m\W $ \e[39m'
 if [ "$TERM" = "linux" ] || [ "$TERM" = "screen" ]; then
   PS1='\u \W $ ';
-  alias ls='ls --color';
-  alias ll='ls --color -l'
 else
   eval "$(starship init bash)";
-  alias ls="lsd";
-  alias ll="lsd -l"
 fi
+alias ls='ls --color=auto';
+alias ll='ls --color=auto -l'
 set -o vi
 alias vim="nvim"
 alias temp="watch sensors"
