@@ -14,4 +14,3 @@ alias kssh="kitty +kitten ssh"
 alias ..="cd .."
 export LD_LIBRARY_PATH=/usr/local/lib
 PATH=$PATH:/home/user/.cargo/bin
-# alias pstart="startplasma-wayland"
