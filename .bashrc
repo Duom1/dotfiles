@@ -10,7 +10,6 @@ alias ll='ls --color=auto -l'
 set -o vi
 alias vim="nvim"
 alias temp="watch sensors"
-alias kssh="kitty +kitten ssh"
 alias ..="cd .."
-export LD_LIBRARY_PATH=/usr/local/lib
-PATH=$PATH:/home/user/.cargo/bin
+#export LD_LIBRARY_PATH=/usr/local/lib
+#PATH=$PATH:/home/user/.cargo/bin

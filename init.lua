@@ -183,7 +183,7 @@ vim.api.nvim_set_keymap('n', '<Space>t', [[:lua open_terminal()<CR>]], { noremap
 vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 
 -- Clang-format command: space f m
-vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format -style="Mozilla"<CR>]], { silent = true })
+vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- Colorscheme
