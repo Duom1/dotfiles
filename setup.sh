@@ -3,6 +3,7 @@ link_dotfiles() {
   cp ./.xinitrc ~/.xinitrc
   cp ./starship.toml ~/.config/starship.toml
   cp ./redshift.conf ~/.config/redshift.conf
+  cp ./.Xmodmap ~/.Xmodmap
   if [ -d ~/.config/nvim/ ]; then
     echo "~/.config/nvim/ exists"
     cp ./init.lua ~/.config/nvim/init.lua
