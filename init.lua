@@ -187,5 +187,5 @@ vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = tr
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- Colorscheme
-vim.cmd.colorscheme("gruvbox")
+--vim.cmd.colorscheme("gruvbox")
 
