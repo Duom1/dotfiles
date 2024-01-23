@@ -122,6 +122,12 @@ require('lualine').setup{
   }
 }
 
+-- switch g keys and the normal ones for wrapped lines
+vim.api.nvim_set_keymap('n', 'gj', 'j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gk', 'k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
+
 -- Commenting
 vim.api.nvim_set_keymap('n', '<Space>/', ':Commentary<CR>', { silent = true })
 vim.api.nvim_set_keymap('v', '<Space>/', ':Commentary<CR>', { silent = true })
