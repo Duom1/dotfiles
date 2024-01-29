@@ -109,6 +109,7 @@ local lspconfig = require('lspconfig')
 lspconfig.clangd.setup{}
 lspconfig.pyright.setup{}
 lspconfig.cmake.setup{}
+lspconfig.rust_analyzer.setup{}
 
 -- Mason setup
 require("mason").setup()
@@ -193,5 +194,4 @@ vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = tr
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- Colorscheme
---vim.cmd.colorscheme("gruvbox")
-
+-- vim.cmd.colorscheme("ron")
