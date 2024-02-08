@@ -1,7 +1,6 @@
 link_dotfiles() {
   cp ./.bashrc ~/.bashrc
   cp ./.xinitrc ~/.xinitrc
-  cp ./starship.toml ~/.config/starship.toml
   cp ./redshift.conf ~/.config/redshift.conf
   cp ./.Xmodmap ~/.Xmodmap
   if [ -d ~/.config/nvim/ ]; then
@@ -10,9 +9,6 @@ link_dotfiles() {
   else
     echo "~/.config/nvim does not exist"
   fi
-}
-install_starship() {
-  curl -sS https://starship.rs/install.sh | sh
 }
 install_fonts() {
   mkdir fonts
@@ -27,7 +23,7 @@ clean() {
 
 # Main script
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 [all or link|starship|fonts|clean]"
+  echo "Usage: $0 [all or link|fonts|clean]"
   exit 1
 fi
 
@@ -35,9 +31,6 @@ for arg in "$@"; do
   case "$arg" in
     link)
       link_dotfiles
-      ;;
-    starship)
-      install_starship
       ;;
     fonts)
       install_fonts
@@ -47,7 +40,6 @@ for arg in "$@"; do
       ;;
     all)
       link_dotfiles
-      install_starship
       install_fonts
       ;;
     *)

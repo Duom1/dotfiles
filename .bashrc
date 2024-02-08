@@ -12,4 +12,5 @@ alias vim="nvim"
 alias temp="watch sensors"
 alias ..="cd .."
 #export LD_LIBRARY_PATH=/usr/local/lib
-#PATH=$PATH:/home/user/.cargo/bin
+PATH=$PATH:/home/user/.cargo/bin
+PATH=$PATH:/home/user/.local/bin

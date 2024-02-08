@@ -56,11 +56,16 @@ require("lazy").setup({
     event = "InsertEnter",
     opts = {}
   },
+  -- {
+  --   'nvim-lualine/lualine.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
+  -- },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
+    "L3MON4D3/LuaSnip",
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    build = "make install_jsregexp"
   },
-  "L3MON4D3/LuaSnip",
+  -- "L3MON4D3/LuaSnip",
   "saadparwaiz1/cmp_luasnip",
   "rafamadriz/friendly-snippets",
   {
@@ -72,16 +77,16 @@ require("lazy").setup({
     }
   },
   'neovim/nvim-lspconfig',
-  "williamboman/mason.nvim",
-  {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  },
-  -- Themes
-  "ellisonleao/gruvbox.nvim",
-  "joshdick/onedark.vim",
-  { "tanvirtin/monokai.nvim", priority = 1000 },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+  "williamboman/mason.nvim"
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   run = function() vim.fn["mkdp#util#install"]() end,
+  -- },
+  -- -- Themes
+  -- "ellisonleao/gruvbox.nvim",
+  -- "joshdick/onedark.vim",
+  -- { "tanvirtin/monokai.nvim", priority = 1000 },
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 })
 
 -- Lsp config
@@ -105,6 +110,9 @@ cmp.setup {
     { name = 'luasnip' }
   },
 }
+
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- use the above link to check what to add
 local lspconfig = require('lspconfig')
 lspconfig.clangd.setup{}
 lspconfig.pyright.setup{}
@@ -115,13 +123,13 @@ lspconfig.rust_analyzer.setup{}
 require("mason").setup()
 
 -- Lua line configurations
-require('lualine').setup{
-  options = {
-    icons_enabled = false,
-    component_separators = { left = '|', right = '|'},
-    section_separators = { left = '', right = ''},
-  }
-}
+-- require('lualine').setup{
+--   options = {
+--     icons_enabled = false,
+--     component_separators = { left = '|', right = '|'},
+--     section_separators = { left = '', right = ''},
+--   }
+-- }
 
 -- switch g keys and the normal ones for wrapped lines
 vim.api.nvim_set_keymap('n', 'gj', 'j', { noremap = true, silent = true })
@@ -150,7 +158,7 @@ vim.api.nvim_set_keymap('n', '<C-q>', ':qa<CR>', { noremap = true, silent = true
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { silent = true })
 
 -- Line numbers and stuff
-vim.opt.fillchars = { eob = " " }
+vim.opt.fillchars = { eob = "_" }
 vim.wo.scrolloff = 5
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -190,8 +198,6 @@ vim.api.nvim_set_keymap('n', '<Space>t', [[:lua open_terminal()<CR>]], { noremap
 vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 
 -- Clang-format command: space f m
+-- should implemnet something that checks the file type and does the formating based on that
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
-
--- Colorscheme
--- vim.cmd.colorscheme("ron")
