@@ -77,12 +77,13 @@ require("lazy").setup({
     }
   },
   'neovim/nvim-lspconfig',
-  "williamboman/mason.nvim"
+  "williamboman/mason.nvim",
   -- {
   --   "iamcco/markdown-preview.nvim",
   --   run = function() vim.fn["mkdp#util#install"]() end,
   -- },
-  -- -- Themes
+  -- Themes
+  "/Shatur/neovim-ayu"
   -- "ellisonleao/gruvbox.nvim",
   -- "joshdick/onedark.vim",
   -- { "tanvirtin/monokai.nvim", priority = 1000 },
@@ -201,3 +202,6 @@ vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 -- should implemnet something that checks the file type and does the formating based on that
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
+
+  -- color scheme
+vim.cmd 'colorscheme ayu-dark'
