@@ -184,6 +184,10 @@ vim.api.nvim_set_keymap("n", "<A-w>", [[:tabclose<CR>]], { noremap =  true })
 vim.api.nvim_set_keymap("n", "<A-l>", [[:tabnext<CR>]], { noremap =  true })
 vim.api.nvim_set_keymap("n", "<A-h>", [[:tabprevious<CR>]], { noremap =  true })
 
+-- Indenting with auto reselect
+vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
+vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
+
 -- terminal
 vim.cmd[[
   augroup TerminalMode
@@ -203,5 +207,5 @@ vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
-  -- color scheme
+-- color scheme
 vim.cmd 'colorscheme ayu-dark'
