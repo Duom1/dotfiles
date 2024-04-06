@@ -208,4 +208,4 @@ vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = tr
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- color scheme
-vim.cmd 'colorscheme ayu-dark'
+-- vim.cmd 'colorscheme ayu-dark'

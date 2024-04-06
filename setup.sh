@@ -2,6 +2,7 @@ link_dotfiles() {
   cp ./.bashrc ~/.bashrc
   cp ./.xinitrc ~/.xinitrc
   cp ./redshift.conf ~/.config/redshift.conf
+  cp ./picom.conf ~/.config/picom.conf
   cp ./.Xmodmap ~/.Xmodmap
   if [ -d ~/.config/nvim/ ]; then
     echo "~/.config/nvim/ exists"
