@@ -207,5 +207,11 @@ vim.api.nvim_set_keymap('t', '<A-i>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
--- color scheme
--- vim.cmd 'colorscheme ayu-dark'
+-- setting some custom colors
+vim.cmd 'highlight Visual cterm=reverse'
+vim.cmd 'highlight SignColumn ctermfg=11 ctermbg=NONE'
+vim.cmd 'highlight TabLine ctermfg=11 ctermbg=NONE cterm=NONE'
+vim.cmd 'highlight TabLineFill cterm=NONE'
+vim.cmd 'highlight StatusLine cterm=bold, ctermfg=81'
+vim.cmd 'highlight StatusLineNC cterm=NONE, ctermfg=81'
+
