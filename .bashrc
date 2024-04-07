@@ -8,7 +8,6 @@ alias ..="cd .."
 alias .2="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
-eval "$(zoxide init --cmd cd bash)"
 alias up="yay -Syu"
 alias ins="yay -S"
 set -o vi
@@ -16,3 +15,7 @@ eval "$(zoxide init --cmd cd bash)"
 #export LD_LIBRARY_PATH=/usr/local/lib
 PATH=$PATH:/home/user/.cargo/bin
 PATH=$PATH:/home/user/.local/bin
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  startx
+fi
