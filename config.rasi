@@ -1,0 +1,4 @@
+configuration {
+  font: "JetBrainsMono Nerd Font 12";
+}
+@theme "colors-rofi-dark"

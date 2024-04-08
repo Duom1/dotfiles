@@ -1,15 +1,23 @@
 link_dotfiles() {
-  cp ./.bashrc ~/.bashrc
-  cp ./.xinitrc ~/.xinitrc
-  cp ./redshift.conf ~/.config/redshift.conf
-  cp ./picom.conf ~/.config/picom.conf
-  cp ./.Xmodmap ~/.Xmodmap
+  cp -v ./.bashrc ~/.bashrc
+  cp -v ./.xinitrc ~/.xinitrc
+  cp -v ./redshift.conf ~/.config/redshift.conf
+  cp -v ./picom.conf ~/.config/picom.conf
+  cp -v ./.Xmodmap ~/.Xmodmap
   if [ -d ~/.config/nvim/ ]; then
     echo "~/.config/nvim/ exists"
-    cp ./init.lua ~/.config/nvim/init.lua
   else
     echo "~/.config/nvim does not exist"
+    mkdir -pv ~/.config/nvim
   fi
+  cp -v ./init.lua ~/.config/nvim/init.lua
+  if [ -d ~/.config/rofi/ ]; then
+    echo "~/.config/rofi/ exists"
+  else
+    echo "~/.config/rofi does not exist"
+    mkdir -pv ~/.config/rofi
+  fi
+  cp -v ./config.rasi ~/.config/rofi/config.rasi
 }
 install_fonts() {
   mkdir fonts
@@ -19,7 +27,7 @@ install_fonts() {
   sudo mv *.ttf /usr/share/fonts/
 }
 clean() {
-  rm -rf ./fonts
+  rm -rf ./fonts ./picom
 }
 
 # Main script
