@@ -209,10 +209,11 @@ vim.api.nvim_set_keymap('n', '<Space>fm', [[:%!clang-format<CR>]], { silent = tr
 vim.api.nvim_set_keymap('n', '<Space>fl', [[:!cpplint %<CR>]], { silent = true })
 
 -- setting some custom colors
-vim.cmd 'highlight Visual cterm=reverse'
-vim.cmd 'highlight SignColumn ctermfg=11 ctermbg=NONE'
-vim.cmd 'highlight TabLine ctermfg=11 ctermbg=NONE cterm=NONE'
-vim.cmd 'highlight TabLineFill cterm=NONE'
-vim.cmd 'highlight StatusLine cterm=bold, ctermfg=81'
-vim.cmd 'highlight StatusLineNC cterm=NONE, ctermfg=81'
+-- vim.cmd 'highlight Visual cterm=reverse'
+-- vim.cmd 'highlight SignColumn ctermfg=11 ctermbg=NONE'
+-- vim.cmd 'highlight TabLine ctermfg=11 ctermbg=NONE cterm=NONE'
+-- vim.cmd 'highlight TabLineFill cterm=NONE'
+-- vim.cmd 'highlight StatusLine cterm=bold, ctermfg=81'
+-- vim.cmd 'highlight StatusLineNC cterm=NONE, ctermfg=81'
 
+vim.cmd 'color darkdesert'

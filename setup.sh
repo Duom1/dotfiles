@@ -4,6 +4,7 @@ link_dotfiles() {
   cp -v ./redshift.conf ~/.config/redshift.conf
   cp -v ./picom.conf ~/.config/picom.conf
   cp -v ./.Xmodmap ~/.Xmodmap
+  sudo cp -v ./darkdesert.vim /usr/share/nvim/runtime/colors
   if [ -d ~/.config/nvim/ ]; then
     echo "~/.config/nvim/ exists"
   else
