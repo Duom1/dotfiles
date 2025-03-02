@@ -65,7 +65,7 @@ fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/rele
   astronvim = false
 
 [link]
-enable = false
+enable = true
 
   [link.wallpapers]
   source = "./Wallpapers"
@@ -125,5 +125,10 @@ enable = false
   [link.picom]
   source = "./picom.conf"
   dest = "~/.config/picom.conf"
+  enable = true
+
+  [link.powermenu]
+  source = "./rofi-power-menu"
+  dest = "~/.local/bin/rofi-power-menu"
   enable = true
 
