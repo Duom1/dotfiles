@@ -1,12 +1,13 @@
 #!/bin/python3
 
+from os.path import expanduser
 import tomllib as toml
 import subprocess
 import shutil
 import os
 import glob
 import multiprocessing
-from os.path import expanduser
+import sys
 
 SUDO = "sudo"
 
@@ -49,6 +50,7 @@ def installProgram(p):
             print("please install yay:\n" 
                     "git clone https://aur.archlinux.org/yay.git --depth 1 && "
                     "cd yay && makepkg -si")
+            sys.exit(1)
     else:
         print(f"Unable to install packages on {distro}")
 
@@ -169,7 +171,10 @@ def link(a):
         if not i["enable"]:
             continue
         dest = expanduser(i["dest"])
+        destPath = os.path.dirname(dest)
         source = os.path.abspath(i["source"])
+        if not os.path.isdir(destPath):
+            os.makedirs(destPath)
         if isLinkToTarget(dest, source):
             print(f"link {dest} already exists")
             continue

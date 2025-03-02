@@ -19,6 +19,7 @@ programs = [
   "maim",
   "xclip",
   "brightnessctl",
+  "unzip",
   ["node", "nodejs"],
   ["nvim", "neovim"],
   ["xmodmap", "xorg-xmodmap"],
@@ -30,6 +31,7 @@ libs = [
   ["xinerama", "libxinerama"], # "libxinerama-dev"],
   ["xft", "libxft"], # "libxft-dev"],
   ["x11", "libx11"], # "libx11-dev"],
+  ["imlib2", "imlib2"],
 ]
 
 [wallpaper_and_theme]
@@ -60,7 +62,7 @@ fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/rele
   astronvim = false
 
 [link]
-enable = true
+enable = false
 
   [link.wallpapers]
   source = "./Wallpapers"
