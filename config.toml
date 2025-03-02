@@ -16,6 +16,9 @@ programs = [
   "nitrogen",
   "rofi",
   "sed",
+  "maim",
+  "xclip",
+  "brightnessctl",
   ["node", "nodejs"],
   ["nvim", "neovim"],
   ["xmodmap", "xorg-xmodmap"],
@@ -49,11 +52,15 @@ fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/rele
   source = "https://github.com/duom1/slstatus"
   enable = false
 
+  [suckless.slock]
+  source = "https://github.com/duom1/slock"
+  enable = false
+
 [nvim]
   astronvim = false
 
 [link]
-enable = false
+enable = true
 
   [link.wallpapers]
   source = "./Wallpapers"
@@ -93,5 +100,15 @@ enable = false
   [link.forcerate]
   source = "./force-rate.pl"
   dest = "~/force-rate.pl"
+  enable = true
+
+  [link.xmodmap]
+  source = "./.Xmodmap"
+  dest = "~/.Xmodmap"
+  enable = true
+
+  [link.getvolume]
+  source = "./get-volume.sh"
+  dest = "~/get-volume.sh"
   enable = true
 
