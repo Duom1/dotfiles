@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Discord
+Exec=firefox 'ext+container:name=discord&url=https://discord.com/app'

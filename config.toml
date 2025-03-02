@@ -1,0 +1,97 @@
+# config for duom1's dotfiles
+
+title = "dotfile_config"
+
+[ensure_installed]
+programs = [
+  "git",
+  "make",
+  "gcc",
+  "python3",
+  "pkg-config",
+  "redshift",
+  "xbanish",
+  "wget",
+  "picom",
+  "nitrogen",
+  "rofi",
+  "sed",
+  ["node", "nodejs"],
+  ["nvim", "neovim"],
+  ["xmodmap", "xorg-xmodmap"],
+  ["xset", "xorg-xset"],
+  ["xrandr", "xorg-xrandr"],
+  ["wal", "pywal"],
+]
+libs = [
+  ["xinerama", "libxinerama"], # "libxinerama-dev"],
+  ["xft", "libxft"], # "libxft-dev"],
+  ["x11", "libx11"], # "libx11-dev"],
+]
+
+[wallpaper_and_theme]
+elementary = { repo = "https://github.com/elementary/wallpapers", install = false }
+fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip", name = "JetBrainsMono.zip", enable = true }, enable = false}
+  [wallpaper_and_theme.wal]
+  wallpaper = "odin.jpg"
+  enable = false
+
+[suckless]
+  [suckless.dwm]
+  source = "https://github.com/duom1/dwm"
+  enable = false
+
+  [suckless.st]
+  source = "https://github.com/duom1/st"
+  enable = false
+
+  [suckless.slstatus]
+  source = "https://github.com/duom1/slstatus"
+  enable = false
+
+[nvim]
+  astronvim = false
+
+[link]
+enable = false
+
+  [link.wallpapers]
+  source = "./Wallpapers"
+  dest = "~/Pictures/Wallpapers"
+  enable = true
+
+  [link.bashrc]
+  source = "./.bashrc"
+  dest = "~/.bashrc"
+  enable = true
+
+  [link.xinitrc]
+  source = "./.xinitrc"
+  dest = "~/.xinitrc"
+  enable = true
+
+  [link.redshift]
+  source = "./redshift.conf"
+  dest = "~/.config/redshift.conf"
+  enable = true
+
+  [link.rofi]
+  source = "./config.rasi"
+  dest = "~/.config/rofi/config.rasi"
+  enable = true
+
+  [link.dicord]
+  source = "./discord.desktop"
+  dest = "~/.local/share/applications/discord.desktop"
+  enable = true
+
+  [link.spotofy]
+  source = "./spotify.desktop"
+  dest = "~/.local/share/applications/spotify.desktop"
+  enable = true
+
+  [link.forcerate]
+  source = "./force-rate.pl"
+  dest = "~/force-rate.pl"
+  enable = true
+

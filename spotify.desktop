@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Spotify
+Exec=firefox 'ext+container:name=spotify&url=https://spotify.com'
