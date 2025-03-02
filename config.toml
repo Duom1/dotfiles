@@ -22,6 +22,7 @@ programs = [
   "unzip",
   "perl",
   "pamixer",
+  ["trash-put", "trash-cli"],
   ["node", "nodejs"],
   ["nvim", "neovim"],
   ["xmodmap", "xorg-xmodmap"],
@@ -96,7 +97,7 @@ enable = false
   dest = "~/.local/share/applications/discord.desktop"
   enable = true
 
-  [link.spotofy]
+  [link.spotify]
   source = "./spotify.desktop"
   dest = "~/.local/share/applications/spotify.desktop"
   enable = true
@@ -114,5 +115,15 @@ enable = false
   [link.getvolume]
   source = "./get-volume.sh"
   dest = "~/get-volume.sh"
+  enable = true
+
+  [link.lock]
+  source = "./lock.sh"
+  dest = "~/lock.sh"
+  enable = true
+
+  [link.picom]
+  source = "./picom.conf"
+  dest = "~/.config/picom.conf"
   enable = true
 
