@@ -138,6 +138,8 @@ def wal(a):
     wallpaper = "./Wallpapers/" + a["wallpaper"]
     if a["enable"]:
         subprocess.run(["wal", "-nsti", wallpaper])
+        if not os.path.isdir(expanduser("~/.local/share/rofi/themes")):
+            os.makedirs(expanduser("~/.local/share/rofi/themes"))
         subprocess.run(["cp", expanduser("~/.cache/wal/colors-rofi-dark.rasi"), expanduser("~/.local/share/rofi/themes/")])
         if (sedInplaceCheck()):
             subprocess.run(["sed", "-i", "/SchemeUrg/d", expanduser("~/.cache/wal/colors-wal-dwm.h")])
@@ -214,6 +216,7 @@ def main():
     wal(config["wallpaper_and_theme"]["wal"])
     suckless(config["suckless"])
     link(config["link"])
+    nvim(config["nvim"])
 
 if __name__ == "__main__":
     main()

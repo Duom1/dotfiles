@@ -20,6 +20,8 @@ programs = [
   "xclip",
   "brightnessctl",
   "unzip",
+  "perl",
+  "pamixer",
   ["node", "nodejs"],
   ["nvim", "neovim"],
   ["xmodmap", "xorg-xmodmap"],
