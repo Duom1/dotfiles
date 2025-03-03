@@ -22,6 +22,9 @@ programs = [
   "unzip",
   "perl",
   "pamixer",
+  "themix-gui",
+  "lxappearance",
+  ["pywalfox", "python-pywalfox"],
   ["trash-put", "trash-cli"],
   ["node", "nodejs"],
   ["nvim", "neovim"],
@@ -41,8 +44,8 @@ libs = [
 elementary = { repo = "https://github.com/elementary/wallpapers", install = false }
 fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip", name = "JetBrainsMono.zip", enable = true }, enable = false}
   [wallpaper_and_theme.wal]
-  wallpaper = "odin.jpg"
-  enable = false
+  wallpaper = "Tj Holowaychuk.jpg"
+  enable = true
 
 [suckless]
   [suckless.dwm]
@@ -141,4 +144,9 @@ enable = true
   source = "./walh-default.vim"
   dest = "~/.config/nvim/walh-default.vim"
   enable = true
+
+  [link.discordwal]
+  source = "./discord-pywal.css"
+  dest = "~/.config/wal/templates/discord-pywal.css"
+  enable = false
 

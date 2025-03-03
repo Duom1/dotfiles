@@ -131,7 +131,7 @@ def suckless(a):
         if not os.path.isdir(dir):
             subprocess.run(["git", "clone", a[i]["source"]])
         os.chdir(dir)
-        subprocess.run([SUDO, "make", "install", "-j", str(multiprocessing.cpu_count())])
+        subprocess.run([SUDO, "make", "clean", "all", "install", "-j", str(multiprocessing.cpu_count())])
     setDefDir()
 
 def wal(a):
@@ -213,9 +213,9 @@ def main():
     ensureInstalledLibs(config["ensure_installed"]["libs"])
     elementary(config["wallpaper_and_theme"]["elementary"])
     fonts(config["wallpaper_and_theme"]["fonts"])
+    link(config["link"])
     wal(config["wallpaper_and_theme"]["wal"])
     suckless(config["suckless"])
-    link(config["link"])
     nvim(config["nvim"])
 
 if __name__ == "__main__":
