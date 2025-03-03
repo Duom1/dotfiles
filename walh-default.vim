@@ -168,6 +168,8 @@ hi StorageClass ctermbg=NONE ctermfg=2 cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi Structure ctermbg=NONE ctermfg=2 cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi Typedef ctermbg=NONE ctermfg=2 cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi Comment ctermbg=NONE ctermfg=6 cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi IblIndent ctermbg=NONE ctermfg=236 cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi IblScope ctermbg=NONE ctermfg=240 cterm=NONE guifg=NONE guibg=NONE gui=NONE
 if get(g:, 'walh_dimming')
   hi def link NormalNC Inactive
   hi def link NvimTreeNormalNC Inactive

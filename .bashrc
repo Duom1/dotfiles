@@ -21,6 +21,10 @@ alias vim="nvim"
 alias mc='function _mc() { mkdir -p "$1" && cd "$1"; }; _mc'
 alias tput='trash-put'
 
+op() {
+    nohup "$@" >/dev/null 2>&1 &
+}
+
 export MANPAGER="nvim +Man!"
 
 set -o vi
