@@ -132,3 +132,13 @@ enable = true
   dest = "~/.local/bin/rofi-power-menu"
   enable = true
 
+  [link.neofetch]
+  source = "./config.conf"
+  dest = "~/.config/neofetch/config.conf"
+  enable = true
+
+  [link.walh]
+  source = "./walh-default.vim"
+  dest = "~/.config/nvim/walh-default.vim"
+  enable = true
+

@@ -1,7 +1,8 @@
 -- Exiting the terminal.
 vim.cmd.tnoremap("<C-\\> <C-\\><C-N>")
 
-vim.cmd.colorscheme("retrobox")
+-- vim.cmd.colorscheme("retrobox")
+vim.cmd('source ~/.config/nvim/walh-default.vim')
 
 require("lspconfig")["gdscript"].setup({
   name = "godot",
