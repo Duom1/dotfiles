@@ -44,17 +44,17 @@ libs = [
 elementary = { repo = "https://github.com/elementary/wallpapers", install = false }
 fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip", name = "JetBrainsMono.zip", enable = true }, enable = false}
   [wallpaper_and_theme.wal]
-  wallpaper = "Morskie Oko.jpg"
-  enable = true
+  wallpaper = "Ashim DSilva.jpg"
+  enable = false
 
 [suckless]
   [suckless.dwm]
   source = "https://github.com/duom1/dwm"
-  enable = true
+  enable = false
 
   [suckless.st]
   source = "https://github.com/duom1/st"
-  enable = true
+  enable = false
 
   [suckless.slstatus]
   source = "https://github.com/duom1/slstatus"
@@ -143,6 +143,11 @@ enable = true
   [link.walh]
   source = "./walh-default.vim"
   dest = "~/.config/nvim/walh-default.vim"
+  enable = true
+
+  [link.mime]
+  source = "./mimeapps.list"
+  dest = "~/.config/mimeapps.list"
   enable = true
 
   [link.discordwal]

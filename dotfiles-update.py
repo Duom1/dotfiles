@@ -11,8 +11,6 @@ import sys
 
 SUDO = "sudo"
 
-# TODO: add op command
-
 def loadConfig():
     s: str = ""
     with open("./config.toml", "r") as f:

@@ -1,0 +1,28 @@
+[Added Associations]
+image/jpeg=nsxiv.desktop;gimp.desktop;
+text/plain=leafpad.desktop;userapp-deditor-UCXBM2.desktop;xfw.desktop;
+application/json=userapp-deditor-UCXBM2.desktop;
+image/png=nsxiv.desktop;
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;libreoffice-draw.desktop;firefox.desktop;
+application/octet-stream=adie.desktop;
+x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop;
+application/x-zerosize=userapp-deditor-UCXBM2.desktop;
+text/csv=libreoffice-calc.desktop;userapp-deditor-UCXBM2.desktop;
+text/x-tex=userapp-deditor-UCXBM2.desktop;
+text/x-csrc=leafpad.desktop;userapp-deditor-UCXBM2.desktop;
+application/x-perl=leafpad.desktop;
+text/markdown=leafpad.desktop;
+text/x-typst=leafpad.desktop;
+text/x-python=leafpad.desktop;
+inode/directory=thunar.desktop
+
+[Default Applications]
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+application/octet-stream=adie.desktop
+x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop
+application/x-zerosize=userapp-deditor-UCXBM2.desktop
+image/png=nsxiv.desktop
