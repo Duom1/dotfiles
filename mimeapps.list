@@ -26,3 +26,4 @@ application/octet-stream=adie.desktop
 x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop
 application/x-zerosize=userapp-deditor-UCXBM2.desktop
 image/png=nsxiv.desktop
+inode/directory=thunar.desktop

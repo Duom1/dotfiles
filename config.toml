@@ -44,17 +44,17 @@ libs = [
 elementary = { repo = "https://github.com/elementary/wallpapers", install = false }
 fonts = { jetbrainsmono = { link = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip", name = "JetBrainsMono.zip", enable = true }, enable = false}
   [wallpaper_and_theme.wal]
-  wallpaper = "Ashim DSilva.jpg"
-  enable = false
+  wallpaper = "wallpaper_minecraft_trickytrials_1920x1080.png"
+  enable = true
 
 [suckless]
   [suckless.dwm]
   source = "https://github.com/duom1/dwm"
-  enable = false
+  enable = true
 
   [suckless.st]
   source = "https://github.com/duom1/st"
-  enable = false
+  enable = true
 
   [suckless.slstatus]
   source = "https://github.com/duom1/slstatus"

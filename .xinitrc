@@ -11,3 +11,6 @@ xrandr --output HDMI-0 --mode 1920x1080 --rate 60.00 &
 /home/user/force-rate.pl > /home/user/force-rate.log 2>&1 &
 xrandr --output DP-0 --left-of HDMI-0 &
 exec dwm
+xset s off
+xset s noblank
+xset -dpms
